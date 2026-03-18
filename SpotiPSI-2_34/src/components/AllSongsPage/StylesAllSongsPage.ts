@@ -1,11 +1,12 @@
 import { makeStyles } from 'tss-react/mui';
 
 const useStyles = makeStyles()(() => ({
-    PageContent: {
-        width: '85%',
+    AllSongsPageDisplay: {
         height: '100%',
-        overflowY: 'scroll',
+        display: 'flex',
+        flexDirection: 'column',
         direction: 'rtl',
+        padding: '1vh 2vw'
     }
 }));
 
