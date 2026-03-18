@@ -1,7 +1,7 @@
 import SideBar from "../Side Bar/SideBar";
 import PageContent from "../Page Content/PageContent";
 import useStyles from "./StylesMainSection";
-import type { LikesOperations, SongsArr, PlalistsProps } from "../../types/Types";
+import type { LikesOperations, SongsArr, PlaylistsProps } from "../../types/Types";
 import { useTheme } from '@mui/material/styles';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import AllSongsPage from "../AllSongsPage/AllSongsPage";
@@ -11,7 +11,7 @@ import PlaylistsPage from "../PlaylistsPage/PlaylistsPage";
 
 const FAVORITES_API = "http://127.0.0.1:5001/api/favorites"
 
-const MainSection = ({ songs, playlists }: PlalistsProps) => {
+const MainSection = ({ songs, playlists }: PlaylistsProps) => {
     const theme = useTheme()
     const { classes } = useStyles(theme)
     const [favoritesVideosID, setFavoritesVideosID] = useState<string[]>([])
@@ -39,7 +39,7 @@ const MainSection = ({ songs, playlists }: PlalistsProps) => {
                 <Routes>
                     <Route path='/' element={<PageContent />} >
                         <Route path='' element={<AllSongsPage songs={songs} favoritesVideosID={favoritesVideosID} setFavoritesVideosID={setFavoritesVideosID} />} />
-                        <Route path='playlists' element={<PlaylistsPage playlists={playlists} songs={songs} favoritesVideosID={favoritesVideosID}/>} />
+                        <Route path='playlists' element={<PlaylistsPage playlists={playlists} songs={songs} favoritesVideosID={favoritesVideosID} setFavoritesVideosID={setFavoritesVideosID}/>} />
                         <Route path='favorites' element={<FavoritePage favoritesVideosID={favoritesVideosID} songs={songs} setFavoritesVideosID={setFavoritesVideosID} />} />
                     </Route>
                 </Routes>

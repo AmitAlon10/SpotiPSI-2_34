@@ -1,11 +1,9 @@
-import type { FavoritesSongsProps, LikesOperations } from "../../types/Types";
+import type { FavoritesSongsProps } from "../../types/Types";
 import SongsTable from "../SongsTable/SongsTable";
 import useStyles from "./StylesAllSongsPage";
 
 const AllSongsPage = ({ songs, favoritesVideosID, setFavoritesVideosID }: FavoritesSongsProps) => {
     const { classes } = useStyles()
-
-
 
     return (
         <div className={classes.AllSongsPageDisplay}>
