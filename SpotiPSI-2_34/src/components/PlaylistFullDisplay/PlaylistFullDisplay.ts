@@ -2,11 +2,9 @@ import { makeStyles } from 'tss-react/mui';
 
 const useStyles = makeStyles()(() => ({
     Playlist: {
-        width: '100%',
-        borderBottom: '1px solid grey',
         display: 'flex',
         flexDirection: 'column',
-        backgroundColor: 'red'
+        padding: '1vh 2vw',
     },
     PlaylistHeader: {
         display: 'flex',

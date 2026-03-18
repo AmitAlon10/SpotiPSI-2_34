@@ -30,7 +30,7 @@ export type ShortPlaylistDetails = {
     numOfSongs: number;
 }
 
-export interface PlalistsProps{
+export interface PlaylistsProps{
     songs: Song[]
     playlists: Playlist[];
 }
@@ -46,6 +46,7 @@ export type PlaylistSongs = {
     playlistSongs: Song[];
     favoritesVideosID: string[];
 }
+export type PlaylistFullDisplayType =  Playlist & FavoritesSongsProps;
 
 export interface SongsAndPlaylistsArr {
     songs: Song[]
