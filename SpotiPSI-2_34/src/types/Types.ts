@@ -1,10 +1,11 @@
 export type ShortSongDetails = {
     name: string;
     artist: string;
+    favorite: boolean;
 }
 
 export type Song = ShortSongDetails & {
-    id: number;
+    id: string;
     album: string;
 }
 
@@ -27,4 +28,9 @@ export interface MainSectionProps {
 export interface SideBarProps {
     currentPage: string
     updateCurrentPage: (current: PageOption) => void
+}
+
+export interface FavoritesSongsProps {
+    songs: Song[]
+    favoritesVideosID: string[]
 }

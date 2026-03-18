@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import type { SongsArr } from "../../types/Types";
 import AllSongsPage from "../AllSongsPage/AllSongsPage";
+import FavoritePage from "../FavoritePage/FavoritePage";
 import useStyles from "./StylesPageContent";
 
 const FAVORITES_API = "http://127.0.0.1:5001/api/favorites"
@@ -8,7 +9,7 @@ const FAVORITES_API = "http://127.0.0.1:5001/api/favorites"
 const PageContent = ({ songs }: SongsArr) => {
     const { classes } = useStyles()
     
-    const [favoritesVideosID, setFavoritesVideosID] = useState([])
+    const [favoritesVideosID, setFavoritesVideosID] = useState<string[]>([])
     const [error, setError] = useState<string>();
     const fetchFavoritesSongs = async () => {
         try {
@@ -30,8 +31,8 @@ const PageContent = ({ songs }: SongsArr) => {
 
     return (
         <div className={classes.PageContent}>
-            <AllSongsPage songs={songs} />
-            <FavoritePage favoriteSongs={favoritesVideosID} songs={songs}/>
+            <AllSongsPage songs={songs} favoritesVideosID={favoritesVideosID} />
+            <FavoritePage favoritesVideosID={favoritesVideosID} songs={songs} />
         </div>
     )
 }
