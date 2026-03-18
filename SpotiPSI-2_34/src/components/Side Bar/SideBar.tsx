@@ -1,14 +1,9 @@
 import useStyles from "./StylesSideBar";
 import { LibraryMusic, Home, Favorite } from '@mui/icons-material'
+import type { SideBarProps } from "../../types/Types";
 
-type PageOption = 'songs' | 'playlists' | 'favorites'
 
-interface Props {
-    currentPage: string
-    updateCurrentPage: (current: PageOption) => void
-}
-
-const SideBar = ({ currentPage, updateCurrentPage }: Props) => {
+const SideBar = ({ currentPage, updateCurrentPage }: SideBarProps) => {
     const { classes } = useStyles()
     let arr = [classes.OptionBlack, classes.OptionBlack, classes.OptionBlack]
 

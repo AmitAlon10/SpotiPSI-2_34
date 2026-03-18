@@ -1,11 +1,11 @@
 import SideBar from "../Side Bar/SideBar";
 import PageContent from "../Page Content/PageContent";
 import useStyles from "./StylesMainSection";
-import type { Props } from "../../types/Types";
+import type { MainSectionProps } from "../../types/Types";
 import { useTheme } from '@mui/material/styles';
 
 
-const MainSection = ({ currentPage, updateCurrentPage, songs }: Props) => {
+const MainSection = ({ currentPage, updateCurrentPage, songs }: MainSectionProps) => {
     const theme = useTheme()
     const { classes } = useStyles(theme)
     return (
