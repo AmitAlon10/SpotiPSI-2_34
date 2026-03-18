@@ -7,7 +7,6 @@ const SideBar = () => {
     const { classes } = useStyles()
     let arr = [classes.LinkDisplay, classes.LinkDisplay, classes.LinkDisplay]
     const location = useLocation();
-    console.log(location.pathname);
 
     switch (location.pathname) {
         case '/':

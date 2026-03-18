@@ -5,7 +5,10 @@ export type ShortSongDetails = {
     favorite: boolean;
 }
 
-export type Song = ShortSongDetails & {
+export type Song = {
+    id: string;
+    name: string;
+    artist: string;
     album: string;
 }
 
@@ -22,3 +25,34 @@ export type FavoritesSongsProps = LikesOperations & {
     favoritesVideosID: string[]
 }
 
+export type ShortPlaylistDetails = {
+    name: string;
+    numOfSongs: number;
+}
+
+export interface PlalistsProps{
+    songs: Song[]
+    playlists: Playlist[];
+}
+
+export type Playlist = {
+    id: string;
+    name: string;
+    songIds: string[]
+}
+
+export type PlaylistSongs = {
+    name: string;
+    playlistSongs: Song[];
+    favoritesVideosID: string[];
+}
+
+export interface SongsAndPlaylistsArr {
+    songs: Song[]
+    playlists: Playlist[];
+    favoritesVideosID: string[];
+}
+
+export type PlaylistsArr = {
+    playlists: Playlist[]
+}
