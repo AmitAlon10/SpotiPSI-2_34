@@ -8,15 +8,22 @@ import AllPlaylistsPage from '../AllPlaylistsPage/AllPlaylistsPage.tsx';
 const PlaylistsPage = ({ playlists, songs, favoritesVideosID, setFavoritesVideosID }: SongsAndPlaylistsArr & LikesOperations) => {
     const theme = useTheme()
     const { classes } = useStyles(theme)
-    const [currentPlaylist, setCurrentPlaylist] = useState<Playlist | null>({
-        id: "1", name:"m", songIds:["1", "2"]
-    })
-
+    const [currentPlaylist, setCurrentPlaylist] = useState<Playlist | null>(null)
+    console.log(currentPlaylist)
     return (
         <>
             {currentPlaylist
-                ? <PlaylistFullDisplay {...currentPlaylist} songs={songs} favoritesVideosID={favoritesVideosID} setFavoritesVideosID={setFavoritesVideosID} />
-                : <AllPlaylistsPage playlists={playlists} />}
+                ? <PlaylistFullDisplay
+                    {...currentPlaylist}
+                    songs={songs}
+                    favoritesVideosID={favoritesVideosID}
+                    setFavoritesVideosID={setFavoritesVideosID}
+                    setCurrentPlaylist={setCurrentPlaylist} />
+                : <AllPlaylistsPage
+                    playlists={playlists}
+                    setCurrentPlaylist={setCurrentPlaylist}
+                />
+            }
         </>
 
     );

@@ -1,4 +1,4 @@
-import type { Playlist, ShortPlaylistDetails } from "../../types/Types";
+import type { Playlist, setPlaylistType } from "../../types/Types";
 import useStyles from "./StylesPlaylistInfoDisplay";
 
 
@@ -6,7 +6,7 @@ const PlaylistInfoDisplay = ({ name, songIds }: Playlist) => {
     const { classes } = useStyles()
 
     return (
-        <div className={classes.playlistContainer}>
+        <div className={classes.playlistContainer} >
             <span>{name}</span>
             <span className={classes.NumOfSongs}>{songIds.length} Songs</span>
         </div>
