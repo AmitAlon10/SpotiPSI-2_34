@@ -1,17 +1,11 @@
 import SideBar from "../Side Bar/SideBar";
 import PageContent from "../Page Content/PageContent";
-import useStyles from "./StylesMainSection"
-import type { SongsArr } from "../../types/song";
+import useStyles from "./StylesMainSection";
+import type { Props } from "../../types/Types";
 import { useTheme } from '@mui/material/styles';
 
-type PageOption = 'songs' | 'playlists' | 'favorites'
 
-interface Props {
-  currentPage: 'songs' | 'playlists' | 'favorites'
-  updateCurrentPage: (current: PageOption) => void
-}
-
-const MainSection = ({ currentPage, updateCurrentPage, songs }: Props & SongsArr) => {
+const MainSection = ({ currentPage, updateCurrentPage, songs }: Props) => {
     const theme = useTheme()
     const { classes } = useStyles(theme)
     return (

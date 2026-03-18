@@ -2,9 +2,9 @@ import { makeStyles } from 'tss-react/mui';
 
 const useStyles = makeStyles()(() => ({
     SideBar: {
-        width: '15%',
+        width: '14.8%',
         height: '100%',
-        borderLeft: '1px solid black',
+        borderLeft: '1px solid grey',
         display: 'flex',
         flexDirection: 'column',
         paddingTop: '1%',

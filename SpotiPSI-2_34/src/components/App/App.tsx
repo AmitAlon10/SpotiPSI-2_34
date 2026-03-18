@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import type { Song } from '../../types/song'
+import type { Song, PageOption } from '../../types/Types'
 import Header from '../Header/Header'
 import MainSection from '../Main Section/MainSection'
 import Player from '../Player/Player'
@@ -10,11 +10,6 @@ import { appTheme } from '../../themes/theme'
 
 const SONGS_API = "http://127.0.0.1:5001/api/songs"
 
-type PageOption = 'songs' | 'playlists' | 'favorites'
-
-interface CurrentPage {
-  currentPage: PageOption
-}
 
 const App = () => {
   const { classes } = useStyles()

@@ -1,4 +1,4 @@
-import type { ShortSongDetails } from "../../types/song";
+import type { ShortSongDetails } from "../../types/Types";
 import useStyles from "./StylesSongDisplay"
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';

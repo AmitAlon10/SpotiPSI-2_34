@@ -13,7 +13,7 @@ const useStyles = makeStyles<Theme>()(({ palette }: Theme) => ({
             border: '#0000000a solid 2px'
         },
         '& ::-webkit-scrollbar': {
-            width: '0.6vw',
+            width: '0.3vw',
             backgroundColor: 'white',
             borderRadius: '8px'
 
