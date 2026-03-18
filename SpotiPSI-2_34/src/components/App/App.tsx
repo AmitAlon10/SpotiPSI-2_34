@@ -61,7 +61,7 @@ const App = () => {
     <ThemeProvider theme={appTheme}>
       <div className={classes.App}>
         <Header />
-        <MainSection songs={songsList} playlists={playlistList}/>
+        <MainSection songs={songsList} playlists={playlistList} updatePlaylistList={(playlist) => setPlaylistList([...playlistList, playlist])}/>
         <Player />
       </div>
     </ThemeProvider>
