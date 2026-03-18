@@ -4,7 +4,7 @@ const useStyles = makeStyles()(() => ({
     PageContent: {
         width: '85%',
         height: '100%',
-        overflowY: 'scroll',
+        overflowY: 'auto',
         direction: 'rtl',
     }
 }));

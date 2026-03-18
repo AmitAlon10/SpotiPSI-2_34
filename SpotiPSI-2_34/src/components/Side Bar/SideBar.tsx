@@ -1,30 +1,33 @@
 import useStyles from "./StylesSideBar";
 import { LibraryMusic, Home, Favorite } from '@mui/icons-material'
-import type { SideBarProps } from "../../types/Types";
+import { Link, useLocation } from "react-router-dom";
 
 
-const SideBar = ({ currentPage, updateCurrentPage }: SideBarProps) => {
+const SideBar = () => {
     const { classes } = useStyles()
-    let arr = [classes.OptionBlack, classes.OptionBlack, classes.OptionBlack]
+    let arr = [classes.LinkDisplay, classes.LinkDisplay, classes.LinkDisplay]
+    const location = useLocation();
+    console.log(location.pathname);
 
-    switch (currentPage) {
-        case 'songs':
-            arr[0] = classes.OptionPurple
+    switch (location.pathname) {
+        case '/':
+            arr[0] += " " + classes.PurpleBackground
             break
-        case 'playlists':
-            arr[1] = classes.OptionPurple
+        case '/playlists':
+            arr[1] += " " + classes.PurpleBackground
             break
-        case 'favorites':
-            arr[2] = classes.OptionPurple
+        case '/favorites':
+            arr[2] += " " + classes.PurpleBackground
             break
     }
 
     return (
+
         <div className={classes.SideBar}>
-            <div className={arr[0]} onClick={() => updateCurrentPage('songs')}><Home></Home>כל השירים</div>
-            <div className={arr[1]} onClick={() => updateCurrentPage('playlists')}><LibraryMusic></LibraryMusic>פלייליסטים</div>
-            <div className={arr[2]} onClick={() => updateCurrentPage('favorites')}><Favorite></Favorite>מועדפים</div>
-        </div>
+            <Link to='/' className={arr[0]}><Home></Home>כל השירים</Link>
+            <Link to='/playlists' className={arr[1]}><LibraryMusic></LibraryMusic>פלייליסטים</Link>
+            <Link to='/favorites' className={arr[2]}><Favorite></Favorite>מועדפים</Link>
+        </div >
     )
 }
 

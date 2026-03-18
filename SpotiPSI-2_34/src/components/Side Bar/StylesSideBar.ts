@@ -9,19 +9,10 @@ const useStyles = makeStyles()(() => ({
         flexDirection: 'column',
         paddingTop: '1%',
     },
-    OptionPurple: {
-        width: '95%',
-        height: '5%',
-        display: 'flex',
-        flexDirection: 'row-reverse',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        gap: '1rem',
-        paddingRight: '5%',
-        color: '#B3B3B3',
-        backgroundColor: '#2D2032'
+    PurpleBackground: {
+        backgroundColor: '#2D2032',
     },
-    OptionBlack: {
+    LinkDisplay: {
         width: '95%',
         height: '5%',
         display: 'flex',
@@ -31,7 +22,8 @@ const useStyles = makeStyles()(() => ({
         gap: '1rem',
         paddingRight: '5%',
         color: '#B3B3B3',
-        borderLeft: '1px solid #8080806b'
+        borderLeft: '1px solid #8080806b',
+        textDecoration: 'none'
     }
 }));
 

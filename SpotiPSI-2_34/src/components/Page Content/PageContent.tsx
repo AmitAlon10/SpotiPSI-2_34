@@ -1,38 +1,12 @@
-import { useEffect, useState } from "react";
-import type { SongsArr } from "../../types/Types";
-import AllSongsPage from "../AllSongsPage/AllSongsPage";
-import FavoritePage from "../FavoritePage/FavoritePage";
 import useStyles from "./StylesPageContent";
+import { Outlet } from "react-router-dom";
 
-const FAVORITES_API = "http://127.0.0.1:5001/api/favorites"
 
-const PageContent = ({ songs }: SongsArr) => {
+const PageContent = () => {
     const { classes } = useStyles()
-    
-    const [favoritesVideosID, setFavoritesVideosID] = useState<string[]>([])
-    const [error, setError] = useState<string>();
-    const fetchFavoritesSongs = async () => {
-        try {
-            const response = await fetch(FAVORITES_API)
-            const data = await response.json()
-            setFavoritesVideosID(data);
-        } catch (error) {
-            setError("Something went wrong");
-            console.error(error);
-            return;
-        }
-        finally {
-        }
-    }
-
-    useEffect(() => {
-        fetchFavoritesSongs()
-    }, [])
-
     return (
         <div className={classes.PageContent}>
-            <AllSongsPage songs={songs} favoritesVideosID={favoritesVideosID} />
-            <FavoritePage favoritesVideosID={favoritesVideosID} songs={songs} />
+            <Outlet />
         </div>
     )
 }
