@@ -8,7 +8,7 @@ const useStyles = makeStyles()(() => ({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#1D1D1D',
-        color: '#4D4F4D'
+        color: '#ffffff'
     }
 }));
 

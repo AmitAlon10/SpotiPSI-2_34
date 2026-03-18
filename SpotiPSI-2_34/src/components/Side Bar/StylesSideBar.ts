@@ -30,7 +30,8 @@ const useStyles = makeStyles()(() => ({
         alignItems: 'center',
         gap: '1rem',
         paddingRight: '5%',
-        color: '#B3B3B3'
+        color: '#B3B3B3',
+        borderLeft: '1px solid #8080806b'
     }
 }));
 

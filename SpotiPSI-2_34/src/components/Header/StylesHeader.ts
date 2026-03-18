@@ -1,20 +1,23 @@
 import { makeStyles } from 'tss-react/mui';
+import {type Theme } from '@mui/material/styles';
 
-const useStyles = makeStyles()(() => ({
+
+const useStyles = makeStyles<Theme>()(({palette}: Theme) => ({
     Header: {
         width: '100%',
         height: '7.5%',
         display: 'flex',
         justifyContent: 'flex-end',
-        backgroundColor: '#313131'
+        backgroundColor: '#313131',
     },
     Right: {
-        width: '10%',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        color: '#8656A6',
-        fontSize: '20px'
+        fontSize: '2em',
+        fontWeight: 'bold',
+        color: palette.secondary.main,
+        padding:'0 1vh  '
     }
 }));
 
