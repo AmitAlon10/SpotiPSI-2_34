@@ -6,7 +6,8 @@ const useStyles = makeStyles()(() => ({
         flexDirection: 'column',
         borderBottom: '1px solid #8080806b',
         padding: '1vh 0',
-        direction: 'ltr'
+        direction: 'ltr',
+        flexGrow: '1'
     },
     NumOfSongs: {
         fontSize: '13px',
