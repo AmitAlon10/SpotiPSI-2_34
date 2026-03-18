@@ -1,4 +1,4 @@
-import type { SongsArr } from "../../types/song";
+import type { SongsArr } from "../../types/Types";
 import SongDisplay from "../SongDisplay/SongDisplay";
 import useStyles from "./StylesSongsTable";
 

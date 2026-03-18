@@ -9,6 +9,6 @@ export const appTheme = createTheme({
       main: '#c370fac9',
       light: '#F5EBFF',
       contrastText: '#47008F',
-    },
-  },
+    }
+  }
 });
