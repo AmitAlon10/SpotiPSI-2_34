@@ -1,7 +1,7 @@
 import SideBar from "../Side Bar/SideBar";
 import PageContent from "../Page Content/PageContent";
 import useStyles from "./StylesMainSection";
-import type { SongsArr } from "../../types/Types";
+import type { LikesOperations, SongsArr } from "../../types/Types";
 import { useTheme } from '@mui/material/styles';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import AllSongsPage from "../AllSongsPage/AllSongsPage";
@@ -15,7 +15,7 @@ const MainSection = ({ songs }: SongsArr) => {
     const { classes } = useStyles(theme)
     const [favoritesVideosID, setFavoritesVideosID] = useState<string[]>([])
     const [error, setError] = useState<string>();
-
+    
     const fetchFavoritesSongs = async () => {
         try {
             const response = await fetch(FAVORITES_API)
@@ -25,8 +25,6 @@ const MainSection = ({ songs }: SongsArr) => {
             setError("Something went wrong");
             console.error(error);
             return;
-        }
-        finally {
         }
     }
 
@@ -39,9 +37,9 @@ const MainSection = ({ songs }: SongsArr) => {
             <Router>
                 <Routes>
                     <Route path='/' element={<PageContent />} >
-                        <Route path='' element={<AllSongsPage songs={songs} favoritesVideosID={favoritesVideosID} />} />
-                        <Route path='playlists' element={<AllSongsPage songs={songs} favoritesVideosID={favoritesVideosID} />} />
-                        <Route path='favorites' element={<FavoritePage favoritesVideosID={favoritesVideosID} songs={songs} />} />
+                        <Route path='' element={<AllSongsPage songs={songs} favoritesVideosID={favoritesVideosID} setFavoritesVideosID={setFavoritesVideosID} />} />
+                        <Route path='playlists' element={<AllSongsPage songs={songs} favoritesVideosID={favoritesVideosID} setFavoritesVideosID={setFavoritesVideosID} />} />
+                        <Route path='favorites' element={<FavoritePage favoritesVideosID={favoritesVideosID} songs={songs} setFavoritesVideosID={setFavoritesVideosID} />} />
                     </Route>
                 </Routes>
                 <SideBar />
