@@ -2,7 +2,6 @@ import { makeStyles } from 'tss-react/mui';
 
 const useStyles = makeStyles()(() => ({
     FavoritesSongsPageDisplay: {
-        height: '100%',
         display: 'flex',
         flexDirection: 'column',
         direction: 'rtl',
