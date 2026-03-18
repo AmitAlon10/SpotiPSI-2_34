@@ -11,7 +11,7 @@ import PlaylistsPage from "../PlaylistsPage/PlaylistsPage";
 
 const FAVORITES_API = "http://127.0.0.1:5001/api/favorites"
 
-const MainSection = ({ songs, playlists }: PlaylistsProps) => {
+const MainSection = ({ songs, playlists, updatePlaylistList }: PlaylistsProps) => {
     const theme = useTheme()
     const { classes } = useStyles(theme)
     const [favoritesVideosID, setFavoritesVideosID] = useState<string[]>([])
@@ -39,7 +39,7 @@ const MainSection = ({ songs, playlists }: PlaylistsProps) => {
                 <Routes>
                     <Route path='/' element={<PageContent />} >
                         <Route path='' element={<AllSongsPage songs={songs} favoritesVideosID={favoritesVideosID} setFavoritesVideosID={setFavoritesVideosID} />} />
-                        <Route path='playlists' element={<PlaylistsPage playlists={playlists} songs={songs} favoritesVideosID={favoritesVideosID} setFavoritesVideosID={setFavoritesVideosID}/>} />
+                        <Route path='playlists' element={<PlaylistsPage playlists={playlists} songs={songs} favoritesVideosID={favoritesVideosID} setFavoritesVideosID={setFavoritesVideosID} updatePlaylistList={updatePlaylistList}/>} />
                         <Route path='favorites' element={<FavoritePage favoritesVideosID={favoritesVideosID} songs={songs} setFavoritesVideosID={setFavoritesVideosID} />} />
                     </Route>
                 </Routes>

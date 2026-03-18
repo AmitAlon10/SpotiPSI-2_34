@@ -31,6 +31,7 @@ export type ShortPlaylistDetails = {
 }
 
 export interface PlaylistsProps {
+    updatePlaylistList: (playlist: Playlist) => void
     songs: Song[]
     playlists: Playlist[];
 }
@@ -57,8 +58,12 @@ export type PlaylistFullDisplayType = Playlist & FavoritesSongsProps & setPlayli
 export type AllPlaylistsPageType = PlaylistsArr & setPlaylistType;
 
 export interface SongsAndPlaylistsArr {
+    updatePlaylistList: (playlist: Playlist) => void
     songs: Song[]
     playlists: Playlist[];
     favoritesVideosID: string[];
 }
 
+export type SetPlaylist = {
+    updatePlaylistList: (playlist: Playlist) => void
+}
