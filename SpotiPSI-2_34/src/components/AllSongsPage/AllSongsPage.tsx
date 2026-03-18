@@ -1,13 +1,13 @@
-import type { SongsArr } from "../../types/Types";
+import type { FavoritesSongsProps } from "../../types/Types";
 import SongsTable from "../SongsTable/SongsTable";
 import useStyles from "./StylesAllSongsPage";
 
-const AllSongsPage = ({ songs }: SongsArr) => {
+const AllSongsPage = ({ songs, favoritesVideosID  }: FavoritesSongsProps) => {
     const { classes } = useStyles()
     return (
         <div className={classes.AllSongsPageDisplay}>
             <h1>כל השירים</h1>
-            <SongsTable songs={songs}/>    
+            <SongsTable songs={songs} favoritesVideosID={favoritesVideosID}/>    
         </div>
 
     );
