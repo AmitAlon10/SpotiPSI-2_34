@@ -1,7 +1,7 @@
 import { ThemeProvider } from '@mui/material/styles'
 import { useEffect, useState } from 'react'
 import { appTheme } from '../../themes/theme'
-import type { Song } from '../../types/Types'
+import type { Song, Playlist } from '../../types/Types'
 import Header from '../Header/Header'
 import MainSection from '../Main Section/MainSection'
 import Player from '../Player/Player'
@@ -9,11 +9,13 @@ import useStyles from "./StylesApp"
 
 
 const SONGS_API = "http://127.0.0.1:5001/api/songs"
+const PLAYLISTS_API = "http://127.0.0.1:5001/api/playlists"
 
 
 const App = () => {
   const { classes } = useStyles()
   const [songsList, setSongsList] = useState<Song[]>([]);
+  const [playlistList, setPlaylistList] = useState<Playlist[]>([])
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string>();
 
@@ -34,15 +36,32 @@ const App = () => {
     }
   }
 
+  const fetchPlaylists = async () => {
+    setIsLoading(true)
+    try {
+      const response = await fetch(PLAYLISTS_API)
+      const data = await response.json()
+      setPlaylistList(data);
+    } catch (error) {
+      setError("Something went wrong");
+      console.error(error);
+      return;
+    }
+    finally {
+      setIsLoading(false)
+    }
+  }
+
   useEffect(() => {
     fetchSongs()
+    fetchPlaylists()
   }, [])
   return (
 
     <ThemeProvider theme={appTheme}>
       <div className={classes.App}>
         <Header />
-        <MainSection songs={songsList} />
+        <MainSection songs={songsList} playlists={playlistList}/>
         <Player />
       </div>
     </ThemeProvider>
