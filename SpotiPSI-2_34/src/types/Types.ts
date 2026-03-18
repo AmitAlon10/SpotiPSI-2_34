@@ -14,8 +14,7 @@ export interface SongsArr {
 }
 
 export type LikesOperations = {
-    addLike: (songID: string) => Promise<void>
-    removeLike: (songID: string) => Promise<void>
+    setFavoritesVideosID: (songsID: string[]) => void
 }
 
 export type FavoritesSongsProps = LikesOperations & {
