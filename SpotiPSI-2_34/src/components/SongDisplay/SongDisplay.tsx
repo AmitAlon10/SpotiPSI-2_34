@@ -1,12 +1,19 @@
-import type { ShortSongDetails } from "../../types/Types";
+import type { LikesOperations, ShortSongDetails } from "../../types/Types";
 import useStyles from "./StylesSongDisplay"
 import IconButton from '@mui/material/IconButton';
 import { Favorite, Add, FavoriteBorder, PlayArrow } from '@mui/icons-material'
 
-const SongDisplay = ({ name, artist, favorite }: ShortSongDetails) => {
+const SongDisplay = ({ id, name, artist, favorite, addLike, removeLike }: ShortSongDetails & LikesOperations) => {
     const { classes } = useStyles()
 
-    
+    const updateLike = (id: string) => {
+        if (favorite) {
+            removeLike(id);
+        }
+        else {
+            addLike(id);
+        }
+    }
 
     return (
         <div className={classes.SongContainer}>
@@ -20,8 +27,10 @@ const SongDisplay = ({ name, artist, favorite }: ShortSongDetails) => {
                 <IconButton color="inherit" size="small">
                     <Add />
                 </IconButton>
-                <IconButton color="inherit" size="small">
-                    {favorite ? <Favorite color='secondary'/>: <FavoriteBorder />}
+                <IconButton color="inherit" size="small" onClick={() => updateLike(id)} >
+                    {favorite
+                        ? <Favorite color='secondary' />
+                        : <FavoriteBorder />}
                 </IconButton>
             </div>
         </div>
