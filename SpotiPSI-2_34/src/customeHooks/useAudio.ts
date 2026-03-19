@@ -12,10 +12,14 @@ const useAudio = () => {
 
     useEffect(() => {
         if (currentSong) {
-            audioRef.current = new Audio(`/songs/${currentSong.id}.mp3`)
+            audioRef.current.pause()
+            audioRef.current.src = `/songs/${currentSong.id}.mp3`
+            audioRef.current.play()
+
         }
         else {
-            audioRef.current = new Audio()
+            audioRef.current.pause()
+            audioRef.current.src = ``
         }
     }, [currentSong])
 
@@ -23,12 +27,7 @@ const useAudio = () => {
         isPlaying ? audioRef.current.play() : audioRef.current.pause()
     }, [isPlaying])
 
-    useEffect(() => {
-        audioRef.current.addEventListener('ended', () => setIsPlaying(false));
-        return () => {
-            audioRef.current.removeEventListener('ended', () => setIsPlaying(false));
-        };
-    }, []);
+
 
     const play = (song: Song, queue: Song[]) => {
         setQueue(queue);
@@ -37,7 +36,7 @@ const useAudio = () => {
     }
 
     const togglePlayPause = () => {
-        setIsPlaying(prev => !prev)
+        currentSong && setIsPlaying(prev => !prev)
     }
 
     const playNext = () => {
@@ -57,8 +56,37 @@ const useAudio = () => {
         setIsPlaying(true);
         setCurrentSong(queue[(indexSong + queue.length - 1) % queue.length]);
     }
-    
-    return { currentSong, isPlaying, queue, currentTime, duration, play, togglePlayPause, playNext, playPrev };
+
+    useEffect(() => {
+        audioRef.current.addEventListener('ended', playNext);
+        return () => {
+            audioRef.current.removeEventListener('ended', playNext);
+        };
+    }, [currentSong]);
+
+    useEffect(() => {
+        audioRef.current.addEventListener('loadedmetadata', () => {
+            setDuration(audioRef.current.duration)
+        })
+        audioRef.current.addEventListener('timeupdate', () => {
+            setCurrentTime(audioRef.current.currentTime)
+        })
+
+        return () => {
+            audioRef.current.removeEventListener('loadedmetadata', () => {
+                setDuration(audioRef.current.duration)
+            })
+            audioRef.current.removeEventListener('timeupdate', () => {
+                setCurrentTime(audioRef.current.currentTime)
+            })
+        };
+    }, [])
+
+    const seek = (time: number) => {
+        audioRef.current.currentTime = time
+    }
+
+    return { currentSong, isPlaying, queue, currentTime, duration, play, togglePlayPause, playNext, playPrev, seek };
 };
 
 export default useAudio
