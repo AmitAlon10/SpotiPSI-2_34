@@ -28,7 +28,7 @@ const Player = () => {
                 <IconButton className={classes.Icon}><PlayArrow fontSize='large' /></IconButton>}
                 <IconButton className={classes.Icon}><SkipNext /></IconButton>
             </div>
-            <Slider aria-label="Volume" value={duration} onChange={handleChange} className={classes.Slider} size='small'/>
+            <Slider aria-label="duration" value={duration} onChange={handleChange} className={classes.Slider} size='small'/>
         </div>
     );
 }
