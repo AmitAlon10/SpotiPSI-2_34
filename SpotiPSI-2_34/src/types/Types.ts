@@ -64,3 +64,16 @@ export type SongPlaying = {
     currentSong: Song | null,
     play: (song: Song, queue: Song[]) => void
 }
+
+// Player props
+
+export type PlayerProps = {
+    seek: (time: number) => void,
+    currentSong: Song | null,
+    isPlaying: boolean,
+    duration: number,
+    currentTime: number,
+    playPrev: () => void,
+    togglePlayPause: () => void,
+    playNext: () => void
+}

@@ -2,18 +2,9 @@ import useStyles from "./StylesPlayer";
 import { SkipPrevious, PlayArrow, SkipNext, Pause } from "@mui/icons-material";
 import { useTheme } from '@mui/material/styles';
 import { IconButton, Slider } from "@mui/material";
-import type { Song } from "../../types/Types";
+import type { PlayerProps } from "../../types/Types";
 
-type Props = {
-    seek: (time: number) => void,
-    currentSong: Song | null,
-    isPlaying: boolean,
-    duration: number,
-    currentTime: number,
-    playPrev: () => void,
-    togglePlayPause: () => void,
-    playNext: () => void
-}
+
 const paddingNum = (num: number) => {
     return num.toString().padStart(2, "0")
 }
@@ -24,7 +15,7 @@ const convertSecondes = (seconds: number) => {
     return `${paddingNum(minutes)}:${paddingNum(seconds)}`
 }
 
-const Player = ({ seek, currentSong, isPlaying, duration, currentTime, playPrev, togglePlayPause, playNext }: Props) => {
+const Player = ({ seek, currentSong, isPlaying, duration, currentTime, playPrev, togglePlayPause, playNext }: PlayerProps) => {
 
     const theme = useTheme()
     const { classes } = useStyles(theme)
