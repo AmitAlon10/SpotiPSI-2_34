@@ -38,8 +38,6 @@ const DialogCreatePlaylist = ({ open, handleClose, updatePlaylistList }: Props &
     }
 
 
-
-
     return (
         <div>
             <Dialog open={open} onClose={handleClose} fullWidth maxWidth="xs" >
@@ -48,18 +46,19 @@ const DialogCreatePlaylist = ({ open, handleClose, updatePlaylistList }: Props &
                     <DialogContent>
                         <form onSubmit={handleSubmit} id="create-playlist">
                             <TextField
-                                fullWidth
-                                label="שם הפלייליסט"
-                                variant="standard"
-                                style={{ direction: 'rtl' }}
-                                value={text}
-                                onChange={(e) => SetText(e.target.value)}
+                            fullWidth
+                            label="שם הפלייליסט"
+                            variant="standard"
+                            color="primary"
+                            style={{direction:'rtl'}}
+                            value={text}
+                            onChange={(e) => SetText(e.target.value)}
                             />
                         </form>
                     </DialogContent>
                     <DialogActions className={classes.DialogActions}>
-                        <Button onClick={handleClose} style={{ color: 'white' }}>ביטול</Button>
-                        <Button type="submit" form="create-playlist" color="secondary">צור</Button>
+                        <Button type="submit" form="create-playlist" color="primary">צור</Button>
+                        <Button onClick={handleClose} color="secondary">ביטול</Button>
                     </DialogActions>
                 </div>
             </Dialog>
