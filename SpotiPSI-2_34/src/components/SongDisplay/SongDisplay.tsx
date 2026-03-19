@@ -69,7 +69,7 @@ const SongDisplay = (song: Song) => {
     }
 
     return (
-<>
+        <>
             <div className={classes.SongInfo}>
                 <IconButton color="inherit" size="small">
                     <PlayArrow color="secondary" />
@@ -95,7 +95,7 @@ const SongDisplay = (song: Song) => {
                 })}
             </Menu>
 
-      </>
+        </>
     );
 }
 
