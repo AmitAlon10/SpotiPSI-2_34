@@ -7,7 +7,6 @@ import MainSection from '../Main Section/MainSection'
 import Player from '../Player/Player'
 import useStyles from "./StylesApp"
 import { PlaylistContext } from "../../contexts/PlaylistsContext";
-import { idID } from '@mui/material/locale'
 
 
 const SONGS_API = "http://127.0.0.1:5001/api/songs"
@@ -78,7 +77,6 @@ const App = () => {
     }
   }
   return (
-
     <ThemeProvider theme={appTheme}>
       <div className={classes.App}>
         <Header />

@@ -12,23 +12,26 @@ const FAVORITES_REMOVE_API = "http://127.0.0.1:5001/api/favorites/remove"
 
 const SongDisplay = ({ id, name, artist }: ShortSongDetails) => {
     const { classes } = useStyles()
+    const [error, setError] = useState<string>();
+    const { favoritesVideosID, setFavoritesVideosID } = useContext(favoritesContext)
+    const { addSongPlaylist, playlistList } = useContext(PlaylistContext)
+    const favorite = favoritesVideosID.includes(id)
 
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
 
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-        setAnchorEl(event.currentTarget);
+        if (playlistList.length !== 0) {
+            setAnchorEl(event.currentTarget);
+        }
     };
     const handleClose = (playlistID?: string) => {
         setAnchorEl(null);
         playlistID && addSongPlaylist(playlistID, id)
     };
 
-    const [error, setError] = useState<string>();
-    const { favoritesVideosID, setFavoritesVideosID } = useContext(favoritesContext)
-    const { addSongPlaylist, playlistList } = useContext(PlaylistContext)
 
-    const favorite = favoritesVideosID.includes(id)
+
     const updateLikes = async (songID: string, apiUrl: string) => {
         try {
             const response = await fetch(apiUrl, {
@@ -73,7 +76,7 @@ const SongDisplay = ({ id, name, artist }: ShortSongDetails) => {
                 </IconButton>
                 <span>{name + "-" + artist}</span>
             </div>
-            
+
             <div className={classes.SongOptions}>
                 <IconButton color="inherit" onClick={handleClick} size="small">
                     <Add />

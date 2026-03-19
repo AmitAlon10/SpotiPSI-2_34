@@ -1,7 +1,7 @@
 import SideBar from "../Side Bar/SideBar";
 import PageContent from "../Page Content/PageContent";
 import useStyles from "./StylesMainSection";
-import type { PlaylistsProps } from "../../types/Types";
+import type { SongsAndPlaylistsArr } from "../../types/Types";
 import { useTheme } from '@mui/material/styles';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import AllSongsPage from "../AllSongsPage/AllSongsPage";
@@ -12,7 +12,7 @@ import { favoritesContext } from "../../contexts/FavoritesContext";
 
 const FAVORITES_API = "http://127.0.0.1:5001/api/favorites"
 
-const MainSection = ({ songs, playlists, updatePlaylistList }: PlaylistsProps) => {
+const MainSection = ({ songs, playlists, updatePlaylistList }: SongsAndPlaylistsArr) => {
     const theme = useTheme()
     const { classes } = useStyles(theme)
     const [favoritesVideosID, setFavoritesVideosID] = useState<string[]>([])

@@ -7,7 +7,7 @@ const useStyles = makeStyles()(() => ({
         direction: 'ltr',
         borderBottom: '1px solid #8080806b',
         padding: '1vh 0',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     SongOptions: {
         display: 'flex',
@@ -18,7 +18,8 @@ const useStyles = makeStyles()(() => ({
         gap: '0 1%',
         flexGrow: '1',
         alignItems: 'center'
-    }
+    },
+    
 
 }));
 

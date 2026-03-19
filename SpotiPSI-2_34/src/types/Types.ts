@@ -5,14 +5,13 @@ export type ShortSongDetails = {
     artist: string;
 }
 
-export type Song =  ShortSongDetails &{
+export type Song = ShortSongDetails & {
     album: string;
 }
 
 export interface SongsArr {
     songs: Song[]
 }
-
 
 export type FavoritesSongsType = {
     setFavoritesVideosID: (songsID: string[]) => void
@@ -25,12 +24,6 @@ export type ShortPlaylistDetails = {
     numOfSongs: number;
 }
 
-export interface PlaylistsProps {
-    updatePlaylistList: (playlist: Playlist) => void
-    songs: Song[]
-    playlists: Playlist[];
-}
-
 export type Playlist = {
     id: string;
     name: string;
@@ -41,6 +34,7 @@ export type PlaylistSongs = {
     name: string;
     playlistSongs: Song[];
 }
+
 export type PlaylistsArr = {
     playlists: Playlist[]
 }
@@ -48,19 +42,21 @@ export type PlaylistsArr = {
 export type setPlaylistType = {
     setCurrentPlaylist: (playlist: Playlist | null) => void
 }
-export type PlaylistFullDisplayType = Playlist  & SongsArr & setPlaylistType;
-export type AllPlaylistsPageType = PlaylistsArr & setPlaylistType;
 
-export interface SongsAndPlaylistsArr {
-    updatePlaylistList: (playlist: Playlist) => void
-    songs: Song[]
-    playlists: Playlist[];
-}
-export type PlaylistSong = {
-    addSongPlaylist: (playlistID: string, songID: string) => void;
-    playlistList: Playlist[]
-}
+export type PlaylistFullDisplayType = Playlist & SongsArr & setPlaylistType;
+
+export type AllPlaylistsPageType = PlaylistsArr & setPlaylistType;
 
 export type SetPlaylist = {
     updatePlaylistList: (playlist: Playlist) => void
+}
+
+export type SongsAndPlaylistsArr =  SetPlaylist & {
+    songs: Song[]
+    playlists: Playlist[];
+}
+
+export type PlaylistSong = {
+    addSongPlaylist: (playlistID: string, songID: string) => void;
+    playlistList: Playlist[]
 }
