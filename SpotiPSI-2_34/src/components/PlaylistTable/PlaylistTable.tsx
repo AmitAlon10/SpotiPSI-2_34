@@ -1,20 +1,18 @@
-import { Box, List, ListItem, ListItemButton } from "@mui/material";
+import {List, ListItem, ListItemButton } from "@mui/material";
 import type { AllPlaylistsPageType } from "../../types/Types";
 import PlaylistInfoDisplay from "../PlaylistInfoDisplay/PlaylistInfoDisplay";
 
 const PlaylistTable = ({ playlists, setCurrentPlaylist }: AllPlaylistsPageType) => {
-
     return (
-        <Box sx={{ direction: 'lrt' }}>
-            <List >
+            <List disablePadding>
                 {playlists.map((playlist) => {
-                    return <ListItem onClick={() => setCurrentPlaylist(playlist)} disablePadding>
-                        <ListItemButton>
-                            <PlaylistInfoDisplay key={playlist.id} {...playlist} />
+                    return <ListItem  key={playlist.id} onClick={() => setCurrentPlaylist(playlist)} disablePadding>
+                        <ListItemButton dense>
+                            <PlaylistInfoDisplay {...playlist} />
                         </ListItemButton>
                     </ListItem>
                 })}
-            </List></Box>
+            </List>
 
     );
 }

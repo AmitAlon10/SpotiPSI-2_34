@@ -4,7 +4,7 @@ import { ArrowBack } from "@mui/icons-material"
 import SongsTable from "../SongsTable/SongsTable"
 import { IconButton } from "@mui/material"
 
-const PlaylistFullDisplay = ({ name, songs, songIds, favoritesVideosID, setFavoritesVideosID, setCurrentPlaylist }: PlaylistFullDisplayType) => {
+const PlaylistFullDisplay = ({ name, songs, songIds,  setCurrentPlaylist }: PlaylistFullDisplayType) => {
     const { classes } = useStyles()
     const playlistSongs = songs.filter((song) => songIds.includes(song.id))
     return (
@@ -15,7 +15,7 @@ const PlaylistFullDisplay = ({ name, songs, songIds, favoritesVideosID, setFavor
                     <ArrowBack />
                 </IconButton>
             </div>
-            <SongsTable songs={playlistSongs} favoritesVideosID={favoritesVideosID} setFavoritesVideosID={setFavoritesVideosID} />
+            <SongsTable songs={playlistSongs}/>
         </div>
     )
 }

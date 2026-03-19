@@ -1,17 +1,34 @@
-import type { LikesOperations, ShortSongDetails } from "../../types/Types";
+import type { ShortSongDetails } from "../../types/Types";
 import useStyles from "./StylesSongDisplay"
 import IconButton from '@mui/material/IconButton';
 import { Favorite, Add, FavoriteBorder, PlayArrow } from '@mui/icons-material'
-import { useState } from "react";
+import React, { useContext, useState } from "react";
+import { favoritesContext } from "../../contexts/FavoritesContext";
+import { PlaylistContext } from "../../contexts/PlaylistsContext";
+import { Menu, MenuItem } from "@mui/material";
 
 const FAVORITES_ADD_API = "http://127.0.0.1:5001/api/favorites/add"
 const FAVORITES_REMOVE_API = "http://127.0.0.1:5001/api/favorites/remove"
 
-const SongDisplay = ({ id, name, artist, favorite, setFavoritesVideosID }: ShortSongDetails & LikesOperations) => {
+const SongDisplay = ({ id, name, artist }: ShortSongDetails) => {
     const { classes } = useStyles()
 
-    const [error, setError] = useState<string>();
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+    const open = Boolean(anchorEl);
 
+    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = (playlistID?: string) => {
+        setAnchorEl(null);
+        playlistID && addSongPlaylist(playlistID, id)
+    };
+
+    const [error, setError] = useState<string>();
+    const { favoritesVideosID, setFavoritesVideosID } = useContext(favoritesContext)
+    const { addSongPlaylist, playlistList } = useContext(PlaylistContext)
+
+    const favorite = favoritesVideosID.includes(id)
     const updateLikes = async (songID: string, apiUrl: string) => {
         try {
             const response = await fetch(apiUrl, {
@@ -49,22 +66,32 @@ const SongDisplay = ({ id, name, artist, favorite, setFavoritesVideosID }: Short
 
     return (
         <div className={classes.SongContainer}>
+
             <div className={classes.SongInfo}>
                 <IconButton color="inherit" size="small">
                     <PlayArrow color="secondary" />
                 </IconButton>
                 <span>{name + "-" + artist}</span>
             </div>
+            
             <div className={classes.SongOptions}>
-                <IconButton color="inherit" size="small">
+                <IconButton color="inherit" onClick={handleClick} size="small">
                     <Add />
                 </IconButton>
+
                 <IconButton color="inherit" size="small" onClick={() => updateLike(id)} >
                     {favorite
                         ? <Favorite color='secondary' />
                         : <FavoriteBorder />}
                 </IconButton>
             </div>
+
+            <Menu anchorEl={anchorEl} open={open} onClose={() => handleClose()}>
+                {playlistList.map((playlist) => {
+                    return <MenuItem key={playlist.id} onClick={() => handleClose(playlist.id)}>{playlist.name}</MenuItem>
+                })}
+            </Menu>
+
         </div>
     );
 }

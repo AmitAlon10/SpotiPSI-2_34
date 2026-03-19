@@ -14,7 +14,7 @@ const DialogCreatePlaylist = ({ open, handleClose, updatePlaylistList }: Props &
     const { classes } = useStyles()
     const [text, SetText] = useState('')
 
-    const handleSubmit = async (event) => {
+    const handleSubmit = async (event: any) => {
         event.preventDefault();
         updatePlaylists(text)
         handleClose();
@@ -44,22 +44,22 @@ const DialogCreatePlaylist = ({ open, handleClose, updatePlaylistList }: Props &
         <div>
             <Dialog open={open} onClose={handleClose} fullWidth maxWidth="xs" >
                 <div className={classes.Dialog}>
-                    <DialogTitle style={{textAlign: 'right', color: 'white'}}>יצירת פלייליסט חדש</DialogTitle>
+                    <DialogTitle style={{ textAlign: 'right', color: 'white' }}>יצירת פלייליסט חדש</DialogTitle>
                     <DialogContent>
                         <form onSubmit={handleSubmit} id="create-playlist">
                             <TextField
-                            fullWidth
-                            label="שם הפלייליסט"
-                            variant="standard"
-                            style={{direction:'rtl'}}
-                            value={text}
-                            onChange={(e) => SetText(e.target.value)}
+                                fullWidth
+                                label="שם הפלייליסט"
+                                variant="standard"
+                                style={{ direction: 'rtl' }}
+                                value={text}
+                                onChange={(e) => SetText(e.target.value)}
                             />
                         </form>
                     </DialogContent>
                     <DialogActions className={classes.DialogActions}>
-                        <Button onClick={handleClose} style={{ color: 'white'}}>ביטול</Button>
-                        <Button type="submit" form="create-playlist" style={{color: '#c370fac9'}}>צור</Button>
+                        <Button onClick={handleClose} style={{ color: 'white' }}>ביטול</Button>
+                        <Button type="submit" form="create-playlist" color="secondary">צור</Button>
                     </DialogActions>
                 </div>
             </Dialog>

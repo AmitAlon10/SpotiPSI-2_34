@@ -6,10 +6,13 @@ import Header from '../Header/Header'
 import MainSection from '../Main Section/MainSection'
 import Player from '../Player/Player'
 import useStyles from "./StylesApp"
+import { PlaylistContext } from "../../contexts/PlaylistsContext";
+import { idID } from '@mui/material/locale'
 
 
 const SONGS_API = "http://127.0.0.1:5001/api/songs"
 const PLAYLISTS_API = "http://127.0.0.1:5001/api/playlists"
+const PLAYLISTS_SONG_ADD_API = "http://127.0.0.1:5001/api/playlists/"
 
 
 const App = () => {
@@ -56,12 +59,32 @@ const App = () => {
     fetchSongs()
     fetchPlaylists()
   }, [])
+
+  const addSongPlaylist = async (playlistID: string, songID: string) => {
+    try {
+      const response = await fetch(PLAYLISTS_SONG_ADD_API + `${playlistID}/add`, {
+        method: 'post',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          "songId": songID
+        })
+      })
+      const data = await response.json()
+      setPlaylistList((playlistList) => [...playlistList.filter((playlist) => playlist.id !== playlistID), data])
+    } catch (error) {
+      setError("Something went wrong");
+      console.error(error);
+      return;
+    }
+  }
   return (
 
     <ThemeProvider theme={appTheme}>
       <div className={classes.App}>
         <Header />
-        <MainSection songs={songsList} playlists={playlistList} updatePlaylistList={(playlist) => setPlaylistList([...playlistList, playlist])}/>
+        <PlaylistContext.Provider value={{ addSongPlaylist, playlistList }}>
+          <MainSection songs={songsList} playlists={playlistList} updatePlaylistList={(playlist) => setPlaylistList(playlistList => [...playlistList, playlist])} />
+        </PlaylistContext.Provider>
         <Player />
       </div>
     </ThemeProvider>
