@@ -62,8 +62,5 @@ export type PlaylistSong = {
 
 export type SongPlaying = {
     currentSong: Song | null,
-    setCurrentSong: (song: Song | null) => void;
-    setIsPlaying: (song: boolean) => void;
-    setQueue: (songs: Song[]) => void;
-    setDuration: (songDuration: number) => void;
+    play: (song: Song, queue: Song[]) => void
 }
