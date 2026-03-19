@@ -1,6 +1,4 @@
 // Songs types
-
-
 export type Song = {
     id: string;
     name: string;
@@ -66,7 +64,6 @@ export type SongPlaying = {
 }
 
 // Player props
-
 export type PlayerProps = {
     seek: (time: number) => void,
     currentSong: Song | null,
