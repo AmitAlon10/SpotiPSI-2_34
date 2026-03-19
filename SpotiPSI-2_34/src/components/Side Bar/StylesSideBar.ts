@@ -1,0 +1,30 @@
+import { makeStyles } from 'tss-react/mui';
+
+const useStyles = makeStyles()(() => ({
+    SideBar: {
+        width: '14.8%',
+        height: '100%',
+        borderLeft: '1px solid grey',
+        display: 'flex',
+        flexDirection: 'column',
+        paddingTop: '1%',
+    },
+    PurpleBackground: {
+        backgroundColor: '#2D2032',
+    },
+    LinkDisplay: {
+        width: '95%',
+        height: '5%',
+        display: 'flex',
+        flexDirection: 'row-reverse',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        gap: '1rem',
+        paddingRight: '5%',
+        color: '#B3B3B3',
+        borderLeft: '1px solid #8080806b',
+        textDecoration: 'none'
+    }
+}));
+
+export default useStyles;
