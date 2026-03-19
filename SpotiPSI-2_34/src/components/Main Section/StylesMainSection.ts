@@ -4,7 +4,7 @@ import type { Theme } from '@mui/material/styles';
 const useStyles = makeStyles<Theme>()(({ palette }: Theme) => ({
     MainSection: {
         width: '100%',
-        height: '87.5%',
+        height: '77.5%',
         display: 'flex',
         backgroundColor: '#121212',
         '& ::-webkit-scrollbar-thumb': {

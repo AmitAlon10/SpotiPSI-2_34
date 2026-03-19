@@ -89,7 +89,7 @@ const SongDisplay = ({ id, name, artist }: ShortSongDetails) => {
                 </IconButton>
             </div>
 
-            <Menu anchorEl={anchorEl} open={open} onClose={() => handleClose()}  classes={{ paper: classes.menuPaper }}>
+            <Menu anchorEl={anchorEl} open={open} onClose={() => handleClose()}>
                 {playlistList.map((playlist) => {
                     return <MenuItem key={playlist.id} onClick={() => handleClose(playlist.id)}>{playlist.name}</MenuItem>
                 })}
