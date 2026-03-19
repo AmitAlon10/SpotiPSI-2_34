@@ -23,9 +23,9 @@ const SideBar = () => {
     return (
 
         <div className={classes.SideBar}>
-            <Link to='/' className={arr[0]}><Home></Home>כל השירים</Link>
-            <Link to='/playlists' className={arr[1]}><LibraryMusic></LibraryMusic>פלייליסטים</Link>
-            <Link to='/favorites' className={arr[2]}><Favorite></Favorite>מועדפים</Link>
+            <Link to='/' className={arr[0]}><Home />כל השירים</Link>
+            <Link to='/playlists' className={arr[1]}><LibraryMusic />פלייליסטים</Link>
+            <Link to='/favorites' className={arr[2]}><Favorite />מועדפים</Link>
         </div >
     )
 }
