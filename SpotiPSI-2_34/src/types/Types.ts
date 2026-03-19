@@ -1,11 +1,10 @@
 // Songs types
-export type ShortSongDetails = {
+
+
+export type Song = {
     id: string;
     name: string;
     artist: string;
-}
-
-export type Song = ShortSongDetails & {
     album: string;
 }
 
@@ -51,7 +50,7 @@ export type SetPlaylist = {
     updatePlaylistList: (playlist: Playlist) => void
 }
 
-export type SongsAndPlaylistsArr =  SetPlaylist & {
+export type SongsAndPlaylistsArr = SetPlaylist & {
     songs: Song[]
     playlists: Playlist[];
 }
@@ -59,4 +58,12 @@ export type SongsAndPlaylistsArr =  SetPlaylist & {
 export type PlaylistSong = {
     addSongPlaylist: (playlistID: string, songID: string) => void;
     playlistList: Playlist[]
+}
+
+export type SongPlaying = {
+    currentSong: Song | null,
+    setCurrentSong: (song: Song | null) => void;
+    setIsPlaying: (song: boolean) => void;
+    setQueue: (songs: Song[]) => void;
+    setDuration: (songDuration: number) => void;
 }
