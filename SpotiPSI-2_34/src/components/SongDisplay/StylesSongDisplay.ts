@@ -1,6 +1,8 @@
 import { makeStyles } from 'tss-react/mui';
+import {type Theme } from '@mui/material/styles';
 
-const useStyles = makeStyles()(() => ({
+
+const useStyles = makeStyles<Theme>()(({palette}: Theme) => ({
     SongContainer: {
         display: 'flex',
         justifyContent: 'space-between',
@@ -19,8 +21,11 @@ const useStyles = makeStyles()(() => ({
         flexGrow: '1',
         alignItems: 'center'
     },
-    
-
+    menuPaper: {
+        backgroundColor: palette.primary.dark,
+        color: 'white',
+        direction: 'rtl'
+    }
 }));
 
 export default useStyles;
