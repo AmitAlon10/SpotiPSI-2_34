@@ -81,6 +81,10 @@ const App = () => {
     }
   }
 
+  const playerProps = {
+    currentSong, isPlaying, duration, playNext, playPrev, togglePlayPause
+  }
+  
   return (
     <ThemeProvider theme={appTheme}>
       <div className={classes.App}>
@@ -90,7 +94,7 @@ const App = () => {
             <MainSection songs={songsList} playlists={playlistList} updatePlaylistList={(playlist) => setPlaylistList(playlistList => [...playlistList, playlist])} />
           </PlaylistContext.Provider>
         </SongPlayingContext.Provider>
-        <Player />
+        <Player {...playerProps}/>
       </div>
     </ThemeProvider>
 

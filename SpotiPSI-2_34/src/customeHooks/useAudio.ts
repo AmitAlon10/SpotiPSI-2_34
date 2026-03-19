@@ -12,10 +12,13 @@ const useAudio = () => {
 
     useEffect(() => {
         if (currentSong) {
-            audioRef.current = new Audio(`/songs/${currentSong.id}.mp3`)
+            audioRef.current.pause()
+            audioRef.current.src = `/songs/${currentSong.id}.mp3`
+            audioRef.current.play()
         }
         else {
-            audioRef.current = new Audio()
+            audioRef.current.pause()
+            audioRef.current.src = ``
         }
     }, [currentSong])
 
@@ -37,7 +40,7 @@ const useAudio = () => {
     }
 
     const togglePlayPause = () => {
-        setIsPlaying(prev => !prev)
+        currentSong && setIsPlaying(prev => !prev)
     }
 
     const playNext = () => {
@@ -57,7 +60,7 @@ const useAudio = () => {
         setIsPlaying(true);
         setCurrentSong(queue[(indexSong + queue.length - 1) % queue.length]);
     }
-    
+
     return { currentSong, isPlaying, queue, currentTime, duration, play, togglePlayPause, playNext, playPrev };
 };
 

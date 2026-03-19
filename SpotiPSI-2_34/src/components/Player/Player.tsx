@@ -2,31 +2,35 @@ import useStyles from "./StylesPlayer";
 import { SkipPrevious, PlayArrow, SkipNext, Pause } from "@mui/icons-material";
 import { useTheme } from '@mui/material/styles';
 import { IconButton, Slider } from "@mui/material";
+import type { Song } from "../../types/Types";
 
-
-const Player = () => {
+type Props = {
+    currentSong: Song | null,
+    isPlaying: boolean,
+    duration: number,
+    playPrev: () => void,
+    togglePlayPause: () => void,
+    playNext: () => void
+}
+const Player = ({ currentSong, isPlaying, duration, playPrev, togglePlayPause, playNext }: Props) => {
 
     const theme = useTheme()
     const { classes } = useStyles(theme)
 
-    const isPlaying = false
-    const name = 'Wake Me Up'
-    const artist = 'Avicii' 
-    let duration = 56
-    const currentTime = 45
+    const currentTime = 0
 
     return (
         <div className={classes.Player}>
-            <span>{name}</span>
-            <span className={classes.Artist}>{artist}</span>
+            <span>{currentSong?.name}</span>
+            <span className={classes.Artist}>{currentSong?.artist}</span>
             <div className={classes.Buttons}>
-                <IconButton className={classes.Icon} ><SkipPrevious /> </IconButton>
-                {isPlaying? 
-                <IconButton className={classes.Icon}><Pause fontSize='large'/></IconButton> :
-                <IconButton className={classes.Icon}><PlayArrow fontSize='large' /></IconButton>}
-                <IconButton className={classes.Icon}><SkipNext /></IconButton>
+                <IconButton className={classes.Icon} onClick={playPrev} ><SkipPrevious /> </IconButton>
+                {isPlaying ?
+                    <IconButton className={classes.Icon} onClick={togglePlayPause}><Pause fontSize='large' /></IconButton> :
+                    <IconButton className={classes.Icon} onClick={togglePlayPause}><PlayArrow fontSize='large' /></IconButton>}
+                <IconButton className={classes.Icon} onClick={playNext}><SkipNext /></IconButton>
             </div>
-            <Slider aria-label="duration" value={duration} className={classes.Slider} size='small'/>
+            <Slider aria-label="duration" value={duration} className={classes.Slider} size='small' />
             <div className={classes.SongDetails}>
                 <div className={classes.Detail}>{currentTime}</div>
                 <div className={classes.Detail}>{duration}</div>
