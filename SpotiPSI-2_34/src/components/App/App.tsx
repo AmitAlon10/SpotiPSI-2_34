@@ -24,7 +24,7 @@ const App = () => {
   const [error, setError] = useState<string>();
 
 
-  const { currentSong, isPlaying, queue, currentTime, duration, play, togglePlayPause, playNext, playPrev } = useAudio()
+  const { currentSong, isPlaying, seek, currentTime, duration, play, togglePlayPause, playNext, playPrev } = useAudio()
 
   const fetchSongs = async () => {
     setIsLoading(true)
@@ -72,8 +72,12 @@ const App = () => {
           "songId": songID
         })
       })
-      const data = await response.json()
-      setPlaylistList((playlistList) => [...playlistList.filter((playlist) => playlist.id !== playlistID), data])
+      
+      const data: Playlist = await response.json()
+      const copyArr = [...playlistList]
+      const indexPlaylist = (playlistList.map(playlist => playlist.id)).indexOf(data.id)
+      copyArr[indexPlaylist] = data
+      setPlaylistList(copyArr)
     } catch (error) {
       setError("Something went wrong");
       console.error(error);
@@ -82,9 +86,9 @@ const App = () => {
   }
 
   const playerProps = {
-    currentSong, isPlaying, duration, playNext, playPrev, togglePlayPause
+    seek, currentSong, isPlaying, duration, playNext, playPrev, togglePlayPause, currentTime
   }
-  
+
   return (
     <ThemeProvider theme={appTheme}>
       <div className={classes.App}>
@@ -94,7 +98,7 @@ const App = () => {
             <MainSection songs={songsList} playlists={playlistList} updatePlaylistList={(playlist) => setPlaylistList(playlistList => [...playlistList, playlist])} />
           </PlaylistContext.Provider>
         </SongPlayingContext.Provider>
-        <Player {...playerProps}/>
+        <Player {...playerProps} />
       </div>
     </ThemeProvider>
 
