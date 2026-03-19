@@ -59,27 +59,27 @@ const useAudio = () => {
 
     useEffect(() => {
         audioRef.current.addEventListener('ended', playNext);
-        audioRef.current.addEventListener('loadedmetadata', () => {
-            setDuration(audioRef.current.duration)
-        })
-
-        audioRef.current.addEventListener('timeupdate', () => {
-            setCurrentTime(audioRef.current.currentTime)
-        })
-
         return () => {
             audioRef.current.removeEventListener('ended', playNext);
         };
     }, [currentSong]);
 
     useEffect(() => {
-        audioRef.current.removeEventListener('loadedmetadata', () => {
+        audioRef.current.addEventListener('loadedmetadata', () => {
             setDuration(audioRef.current.duration)
         })
-
-        audioRef.current.removeEventListener('timeupdate', () => {
+        audioRef.current.addEventListener('timeupdate', () => {
             setCurrentTime(audioRef.current.currentTime)
         })
+
+        return () => {
+            audioRef.current.removeEventListener('loadedmetadata', () => {
+                setDuration(audioRef.current.duration)
+            })
+            audioRef.current.removeEventListener('timeupdate', () => {
+                setCurrentTime(audioRef.current.currentTime)
+            })
+        };
     }, [])
 
     const seek = (time: number) => {
