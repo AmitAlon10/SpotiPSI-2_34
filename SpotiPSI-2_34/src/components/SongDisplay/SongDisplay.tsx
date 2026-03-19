@@ -22,11 +22,13 @@ const SongDisplay = (song: Song) => {
     const open = Boolean(anchorEl);
 
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+        event.stopPropagation()
         if (playlistList.length !== 0) {
             setAnchorEl(event.currentTarget);
         }
     };
-    const handleClose = (playlistID?: string) => {
+    const handleClose = (event?: any, playlistID?: string) => {
+        event && event.stopPropagation()
         setAnchorEl(null);
         playlistID && addSongPlaylist(playlistID, song.id)
     };
@@ -59,7 +61,8 @@ const SongDisplay = (song: Song) => {
         updateLikes(songID, FAVORITES_REMOVE_API)
     }
 
-    const updateLike = (id: string) => {
+    const updateLike = (event: React.MouseEvent<HTMLElement>, id: string) => {
+        event.stopPropagation();
         if (favorite) {
             removeLike(id);
         }
@@ -82,16 +85,16 @@ const SongDisplay = (song: Song) => {
                     <Add />
                 </IconButton>
 
-                <IconButton color="inherit" size="small" onClick={() => updateLike(song.id)} >
+                <IconButton color="inherit" size="small" onClick={(e) => updateLike(e, song.id)} >
                     {favorite
                         ? <Favorite color='secondary' />
                         : <FavoriteBorder />}
                 </IconButton>
             </div>
 
-            <Menu anchorEl={anchorEl} open={open} onClose={() => handleClose()} classes={{ paper: classes.menuPaper }}>
+            <Menu anchorEl={anchorEl} open={open} onClose={(e) => handleClose(e)} classes={{ paper: classes.menuPaper }}>
                 {playlistList.map((playlist) => {
-                    return <MenuItem key={playlist.id} onClick={() => handleClose(playlist.id)}>{playlist.name}</MenuItem>
+                    return <MenuItem key={playlist.id} onClick={(e) => handleClose(e, playlist.id)}>{playlist.name}</MenuItem>
                 })}
             </Menu>
 
