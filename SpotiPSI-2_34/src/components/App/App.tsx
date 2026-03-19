@@ -7,6 +7,7 @@ import MainSection from '../Main Section/MainSection'
 import Player from '../Player/Player'
 import useStyles from "./StylesApp"
 import { PlaylistContext } from "../../contexts/PlaylistsContext";
+import { SongPlayingContext } from '../../contexts/SongPlayingContext'
 
 
 const SONGS_API = "http://127.0.0.1:5001/api/songs"
@@ -21,6 +22,11 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string>();
 
+  const [currentSong, setCurrentSong] = useState<Song | null>(null)
+  const [isPlaying, setIsPlaying] = useState<boolean>(false)
+  const [queue, setQueue] = useState<Song[]>([])
+  const [currentTime, setCurrentTime] = useState(0)
+  const [duration, setDuration] = useState(0)
 
   const fetchSongs = async () => {
     setIsLoading(true)
@@ -76,13 +82,16 @@ const App = () => {
       return;
     }
   }
+
   return (
     <ThemeProvider theme={appTheme}>
       <div className={classes.App}>
         <Header />
-        <PlaylistContext.Provider value={{ addSongPlaylist, playlistList }}>
-          <MainSection songs={songsList} playlists={playlistList} updatePlaylistList={(playlist) => setPlaylistList(playlistList => [...playlistList, playlist])} />
-        </PlaylistContext.Provider>
+        <SongPlayingContext.Provider value={{ currentSong, setCurrentSong, setIsPlaying, setQueue, setDuration }}>
+          <PlaylistContext.Provider value={{ addSongPlaylist, playlistList }}>
+            <MainSection songs={songsList} playlists={playlistList} updatePlaylistList={(playlist) => setPlaylistList(playlistList => [...playlistList, playlist])} />
+          </PlaylistContext.Provider>
+        </SongPlayingContext.Provider>
         <Player />
       </div>
     </ThemeProvider>
