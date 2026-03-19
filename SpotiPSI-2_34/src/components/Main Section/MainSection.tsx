@@ -41,9 +41,9 @@ const MainSection = ({ songs, playlists, updatePlaylistList }: SongsAndPlaylists
                 <Router>
                     <Routes>
                         <Route path='/' element={<PageContent />} >
-                            <Route path='' element={<AllSongsPage songs={songs} />} />
-                            <Route path='playlists' element={<PlaylistsPage playlists={playlists} songs={songs} updatePlaylistList={updatePlaylistList} />} />
-                            <Route path='favorites' element={<FavoritePage songs={songs} />} />
+                            <Route path='' element={<AllSongsPage songs={songs} />} errorElement={<AboutError />}/>
+                            <Route path='playlists' element={<PlaylistsPage playlists={playlists} songs={songs} updatePlaylistList={updatePlaylistList} />} errorElement={<AboutError />}/>
+                            <Route path='favorites' element={<FavoritePage songs={songs} />} errorElement={<AboutError />}/>
                             <Route path="*" element={<AboutError />} />
                         </Route>
                     </Routes>
