@@ -30,6 +30,17 @@ const useStyles = makeStyles<Theme>()(({ palette }: Theme) => ({
     Slider: {
         width: '95%',
         color: palette.secondary.main,
+    },
+    SongDetails: {
+        height: '10%',
+        width: '95%',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center'
+    },
+    Detail: {
+        color: palette.primary.main,
+        fontSize: '14px'
     }
 }));
 
