@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import FavoritePage from "../FavoritePage/FavoritePage";
 import PlaylistsPage from "../PlaylistsPage/PlaylistsPage";
 import { favoritesContext } from "../../contexts/FavoritesContext";
+import AboutError from "../AboutError/AboutError";
 
 const FAVORITES_API = "http://127.0.0.1:5001/api/favorites"
 
@@ -43,6 +44,7 @@ const MainSection = ({ songs, playlists, updatePlaylistList }: SongsAndPlaylists
                             <Route path='' element={<AllSongsPage songs={songs} />} />
                             <Route path='playlists' element={<PlaylistsPage playlists={playlists} songs={songs} updatePlaylistList={updatePlaylistList} />} />
                             <Route path='favorites' element={<FavoritePage songs={songs} />} />
+                            <Route path="*" element={<AboutError />} />
                         </Route>
                     </Routes>
                     <SideBar />
