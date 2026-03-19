@@ -2,6 +2,6 @@ import { createContext } from "react";
 import type { FavoritesSongsType } from "../types/Types";
 
 export const favoritesContext = createContext<FavoritesSongsType>({
-    setFavoritesVideosID: (songsID: string[]) => undefined,
+    setFavoritesVideosID: (_: string[]) => undefined,
     favoritesVideosID: []
 })

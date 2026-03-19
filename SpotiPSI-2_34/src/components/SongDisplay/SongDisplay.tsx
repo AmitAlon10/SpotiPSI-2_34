@@ -1,7 +1,7 @@
 import { Add, Favorite, FavoriteBorder, PlayArrow } from '@mui/icons-material';
 import { Menu, MenuItem, useTheme } from "@mui/material";
 import IconButton from '@mui/material/IconButton';
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { favoritesContext } from "../../contexts/FavoritesContext";
 import { PlaylistContext } from "../../contexts/PlaylistsContext";
 import type { Song } from "../../types/Types";
@@ -13,7 +13,7 @@ const FAVORITES_REMOVE_API = "http://127.0.0.1:5001/api/favorites/remove"
 const SongDisplay = (song: Song) => {
     const theme = useTheme()
     const { classes } = useStyles(theme)
-    const [error, setError] = useState<string>();
+
     const { favoritesVideosID, setFavoritesVideosID } = useContext(favoritesContext)
     const { addSongPlaylist, playlistList } = useContext(PlaylistContext)
     const favorite = favoritesVideosID.includes(song.id)
@@ -27,13 +27,12 @@ const SongDisplay = (song: Song) => {
             setAnchorEl(event.currentTarget);
         }
     };
+
     const handleClose = (event?: any, playlistID?: string) => {
         event && event.stopPropagation()
         setAnchorEl(null);
         playlistID && addSongPlaylist(playlistID, song.id)
     };
-
-
 
     const updateLikes = async (songID: string, apiUrl: string) => {
         try {
@@ -47,8 +46,8 @@ const SongDisplay = (song: Song) => {
             const data = await response.json()
             setFavoritesVideosID(data);
         } catch (error) {
-            setError("Something went wrong");
             console.error(error);
+            alert("Like not updated, something went wrong.")
             return;
         }
     }
@@ -63,16 +62,12 @@ const SongDisplay = (song: Song) => {
 
     const updateLike = (event: React.MouseEvent<HTMLElement>, id: string) => {
         event.stopPropagation();
-        if (favorite) {
-            removeLike(id);
-        }
-        else {
-            addLike(id);
-        }
+        favorite ? removeLike(id) : addLike(id)
     }
 
     return (
         <>
+            {/* Song details */}
             <div className={classes.SongInfo}>
                 <IconButton color="inherit" size="small">
                     <PlayArrow color="secondary" />
@@ -80,6 +75,7 @@ const SongDisplay = (song: Song) => {
                 <span>{song.name + "-" + song.artist}</span>
             </div>
 
+            {/* Song options - Plus button and heart button */}
             <div className={classes.SongOptions}>
                 <IconButton color="inherit" onClick={handleClick} size="small">
                     <Add />
@@ -92,12 +88,12 @@ const SongDisplay = (song: Song) => {
                 </IconButton>
             </div>
 
+            {/* Menu options of playlists to add */}
             <Menu anchorEl={anchorEl} open={open} onClose={(e) => handleClose(e)} classes={{ paper: classes.menuPaper }}>
                 {playlistList.map((playlist) => {
                     return <MenuItem key={playlist.id} onClick={(e) => handleClose(e, playlist.id)}>{playlist.name}</MenuItem>
                 })}
             </Menu>
-
         </>
     );
 }

@@ -10,7 +10,7 @@ const useStyles = makeStyles()(() => ({
     PlaylistsHeader: {
         display: 'flex',
         height: '10%',
-        width: '100%', 
+        width: '100%',
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center'

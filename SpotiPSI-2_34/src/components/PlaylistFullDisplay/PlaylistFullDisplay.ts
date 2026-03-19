@@ -4,7 +4,7 @@ const useStyles = makeStyles()(() => ({
     Playlist: {
         display: 'flex',
         flexDirection: 'column',
-        padding: '1vh 2vw',
+        padding: '1vh 2vw'
     },
     PlaylistHeader: {
         display: 'flex',

@@ -1,12 +1,12 @@
-import type { SetPlaylist, AllPlaylistsPageType } from "../../types/Types";
-import useStyles from "./StylesAllPlaylistsPage";
-import PlaylistTable from "../PlaylistTable/PlaylistTable";
 import { Add } from "@mui/icons-material";
-import DialogCreatePlaylist from "../DialogCreatePlaylist/DialogCreatePlaylist";
-import { Button } from '@mui/material'
+import { Button } from '@mui/material';
 import { useState } from "react";
+import type { AllPlaylistsPageType, SetPlaylist } from "../../types/Types";
+import DialogCreatePlaylist from "../DialogCreatePlaylist/DialogCreatePlaylist";
+import PlaylistTable from "../PlaylistTable/PlaylistTable";
+import useStyles from "./StylesAllPlaylistsPage";
 
-const AllPlaylistsPage = ({  playlists, setCurrentPlaylist, updatePlaylistList}: AllPlaylistsPageType & SetPlaylist) => {
+const AllPlaylistsPage = ({ playlists, setCurrentPlaylist, updatePlaylistList }: AllPlaylistsPageType & SetPlaylist) => {
     const { classes } = useStyles()
     const [open, setOpen] = useState(false);
 
@@ -25,7 +25,7 @@ const AllPlaylistsPage = ({  playlists, setCurrentPlaylist, updatePlaylistList}:
                     <h1>הפלייליסטים שלי</h1>
                     <Button className={classes.Button} variant="outlined" color="secondary" onClick={handleClickOpen}><Add></Add>צור פלייליסט חדש</Button>
                 </div>
-                <PlaylistTable playlists={playlists} setCurrentPlaylist={setCurrentPlaylist}/>    
+                <PlaylistTable playlists={playlists} setCurrentPlaylist={setCurrentPlaylist} />
             </div>
             <DialogCreatePlaylist open={open} handleClose={handleClose} updatePlaylistList={updatePlaylistList} />
         </>

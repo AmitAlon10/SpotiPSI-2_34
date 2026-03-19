@@ -1,20 +1,18 @@
 import { ThemeProvider } from '@mui/material/styles'
 import { useEffect, useState } from 'react'
+import { PlaylistContext } from "../../contexts/PlaylistsContext"
+import { SongPlayingContext } from '../../contexts/SongPlayingContext'
+import useAudio from '../../customeHooks/useAudio'
 import { appTheme } from '../../themes/theme'
-import type { Song, Playlist } from '../../types/Types'
+import type { Playlist, Song } from '../../types/Types'
 import Header from '../Header/Header'
 import MainSection from '../Main Section/MainSection'
 import Player from '../Player/Player'
 import useStyles from "./StylesApp"
-import { PlaylistContext } from "../../contexts/PlaylistsContext";
-import { SongPlayingContext } from '../../contexts/SongPlayingContext'
-import useAudio from '../../customeHooks/useAudio'
-
 
 const SONGS_API = "http://127.0.0.1:5001/api/songs"
 const PLAYLISTS_API = "http://127.0.0.1:5001/api/playlists"
 const PLAYLISTS_SONG_ADD_API = "http://127.0.0.1:5001/api/playlists/"
-
 
 const App = () => {
   const { classes } = useStyles()
@@ -22,7 +20,6 @@ const App = () => {
   const [playlistList, setPlaylistList] = useState<Playlist[]>([])
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string>();
-
 
   const { currentSong, isPlaying, seek, currentTime, duration, play, togglePlayPause, playNext, playPrev } = useAudio()
 
@@ -72,7 +69,7 @@ const App = () => {
           "songId": songID
         })
       })
-      
+
       const data: Playlist = await response.json()
       const copyArr = [...playlistList]
       const indexPlaylist = (playlistList.map(playlist => playlist.id)).indexOf(data.id)

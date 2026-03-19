@@ -3,7 +3,7 @@ import useStyles from "./StylesPlaylistInfoDisplay";
 
 const PlaylistInfoDisplay = ({ name, songIds }: Playlist) => {
     const { classes } = useStyles()
-
+    
     return (
         <div className={classes.playlistContainer} >
             <span>{name}</span>
