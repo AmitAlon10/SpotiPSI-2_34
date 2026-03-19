@@ -6,20 +6,18 @@ import { SongPlayingContext } from "../../contexts/SongPlayingContext";
 
 const SongsTable = ({ songs }: SongsArr) => {
     const { classes } = useStyles()
-    const { currentSong, setCurrentSong, setIsPlaying, setQueue, setDuration } = useContext(SongPlayingContext);
+    const { currentSong, play } = useContext(SongPlayingContext);
 
     const handleClick = (song: Song) => {
-        setQueue(songs);
-        setIsPlaying(true);
-        setCurrentSong(song);
+        play(song, songs)
     }
- 
+
     return (
         <>
             {songs.map((song) => {
                 let songClasses = classes.SongContainer
                 if (currentSong && currentSong == song) {
-                    songClasses+= " " + classes.clickColor
+                    songClasses += " " + classes.clickColor
                 }
                 return <div key={song.id} className={songClasses} onClick={() => handleClick(song)}>
                     <SongDisplay  {...song} />
