@@ -1,6 +1,5 @@
-import type { Playlist, setPlaylistType } from "../../types/Types";
+import type { Playlist } from "../../types/Types";
 import useStyles from "./StylesPlaylistInfoDisplay";
-
 
 const PlaylistInfoDisplay = ({ name, songIds }: Playlist) => {
     const { classes } = useStyles()

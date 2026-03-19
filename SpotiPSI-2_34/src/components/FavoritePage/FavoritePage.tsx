@@ -1,19 +1,19 @@
 import SongsTable from "../SongsTable/SongsTable";
-import type { FavoritesSongsProps } from "../../types/Types";
+import type { SongsArr } from "../../types/Types";
 import useStyles from "./StylesFavoritePage";
+import { useContext } from "react";
+import { favoritesContext } from "../../contexts/FavoritesContext";
 
-
-
-
-const FavoritePage = ({ favoritesVideosID, songs, setFavoritesVideosID}: FavoritesSongsProps) => {
+const FavoritePage = ({songs}: SongsArr) => {
     const { classes } = useStyles()
+    const { favoritesVideosID } = useContext(favoritesContext)
 
     const songsFavorites = songs.filter((fav) => favoritesVideosID.indexOf(fav.id) > -1);
 
     return (
         <div className={classes.FavoritesSongsPageDisplay}>
             <h1>המועדפים שלי</h1>
-            <SongsTable songs={songsFavorites} favoritesVideosID={favoritesVideosID} setFavoritesVideosID={setFavoritesVideosID} />
+            <SongsTable songs={songsFavorites} />
         </div>
 
     );

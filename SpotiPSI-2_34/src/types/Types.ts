@@ -1,14 +1,11 @@
+// Songs types
 export type ShortSongDetails = {
     id: string;
     name: string;
     artist: string;
-    favorite: boolean;
 }
 
-export type Song = {
-    id: string;
-    name: string;
-    artist: string;
+export type Song = ShortSongDetails & {
     album: string;
 }
 
@@ -16,24 +13,15 @@ export interface SongsArr {
     songs: Song[]
 }
 
-export type LikesOperations = {
+export type FavoritesSongsType = {
     setFavoritesVideosID: (songsID: string[]) => void
-}
-
-export type FavoritesSongsProps = LikesOperations & {
-    songs: Song[]
     favoritesVideosID: string[]
 }
 
+// Playlists types
 export type ShortPlaylistDetails = {
     name: string;
     numOfSongs: number;
-}
-
-export interface PlaylistsProps {
-    updatePlaylistList: (playlist: Playlist) => void
-    songs: Song[]
-    playlists: Playlist[];
 }
 
 export type Playlist = {
@@ -45,25 +33,30 @@ export type Playlist = {
 export type PlaylistSongs = {
     name: string;
     playlistSongs: Song[];
-    favoritesVideosID: string[];
 }
+
 export type PlaylistsArr = {
     playlists: Playlist[]
 }
 
 export type setPlaylistType = {
-    setCurrentPlaylist: (playlist: Playlist|null) => void
+    setCurrentPlaylist: (playlist: Playlist | null) => void
 }
-export type PlaylistFullDisplayType = Playlist & FavoritesSongsProps & setPlaylistType;
-export type AllPlaylistsPageType = PlaylistsArr & setPlaylistType;
 
-export interface SongsAndPlaylistsArr {
-    updatePlaylistList: (playlist: Playlist) => void
-    songs: Song[]
-    playlists: Playlist[];
-    favoritesVideosID: string[];
-}
+export type PlaylistFullDisplayType = Playlist & SongsArr & setPlaylistType;
+
+export type AllPlaylistsPageType = PlaylistsArr & setPlaylistType;
 
 export type SetPlaylist = {
     updatePlaylistList: (playlist: Playlist) => void
+}
+
+export type SongsAndPlaylistsArr =  SetPlaylist & {
+    songs: Song[]
+    playlists: Playlist[];
+}
+
+export type PlaylistSong = {
+    addSongPlaylist: (playlistID: string, songID: string) => void;
+    playlistList: Playlist[]
 }
