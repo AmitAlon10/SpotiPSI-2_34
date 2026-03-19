@@ -11,7 +11,7 @@ const AboutError = () => {
         <div className={classes.Err}>
             <span className={classes.Title}>!Oops</span>
             <span className={classes.Info}>404 - PAGE NOT FOUND</span>
-            <Link to='/'><Button className={classes.Button}>GO TO HOMEPAGE</Button></Link>
+            <Link to='/' className={classes.Link}><Button className={classes.Button}>GO TO HOMEPAGE</Button></Link>
         </div>
     )
 }

@@ -19,9 +19,18 @@ const useStyles = makeStyles<Theme>()(({ palette }: Theme) => ({
         paddingBottom: '2.5%'
     },
     Button: {
+        width: '100%',
+        height: '100%',
         color: 'black',
         background: palette.secondary.light,
-        borderRadius: '20px'
+        borderRadius: '30px',
+    },
+    Link: {
+        width: '13%',
+        height: '6%',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 }));
 
