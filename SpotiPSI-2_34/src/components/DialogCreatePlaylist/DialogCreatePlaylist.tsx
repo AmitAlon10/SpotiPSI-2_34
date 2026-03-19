@@ -1,7 +1,7 @@
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
 import { useState } from "react";
 import type { SetPlaylist } from "../../types/Types";
 import useStyles from "./StyleDialogCreatePlaylist";
-import { Button, TextField, Dialog, DialogActions, DialogContent, DialogTitle, colors } from '@mui/material'
 
 interface Props {
     open: boolean;
@@ -36,8 +36,7 @@ const DialogCreatePlaylist = ({ open, handleClose, updatePlaylistList }: Props &
             return;
         }
     }
-
-
+    
     return (
         <div>
             <Dialog open={open} onClose={handleClose} fullWidth maxWidth="xs" >
@@ -46,13 +45,13 @@ const DialogCreatePlaylist = ({ open, handleClose, updatePlaylistList }: Props &
                     <DialogContent>
                         <form onSubmit={handleSubmit} id="create-playlist">
                             <TextField
-                            fullWidth
-                            label="שם הפלייליסט"
-                            variant="standard"
-                            color="primary"
-                            style={{direction:'rtl'}}
-                            value={text}
-                            onChange={(e) => SetText(e.target.value)}
+                                fullWidth
+                                label="שם הפלייליסט"
+                                variant="standard"
+                                color="primary"
+                                style={{ direction: 'rtl' }}
+                                value={text}
+                                onChange={(e) => SetText(e.target.value)}
                             />
                         </form>
                     </DialogContent>

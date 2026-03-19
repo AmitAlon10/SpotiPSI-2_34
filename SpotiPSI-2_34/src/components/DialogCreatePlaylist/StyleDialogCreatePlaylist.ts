@@ -7,7 +7,7 @@ const useStyles = makeStyles()(() => ({
         alignItems: 'center'
     },
     Dialog: {
-        backgroundColor: '#6b6b6b',
+        backgroundColor: '#6b6b6b'
     }
 }));
 

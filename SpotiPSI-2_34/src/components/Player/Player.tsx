@@ -1,9 +1,8 @@
-import useStyles from "./StylesPlayer";
-import { SkipPrevious, PlayArrow, SkipNext, Pause } from "@mui/icons-material";
-import { useTheme } from '@mui/material/styles';
+import { Pause, PlayArrow, SkipNext, SkipPrevious } from "@mui/icons-material";
 import { IconButton, Slider } from "@mui/material";
+import { useTheme } from '@mui/material/styles';
 import type { PlayerProps } from "../../types/Types";
-
+import useStyles from "./StylesPlayer";
 
 const paddingNum = (num: number) => {
     return num.toString().padStart(2, "0")
@@ -16,14 +15,13 @@ const convertSecondes = (seconds: number) => {
 }
 
 const Player = ({ seek, currentSong, isPlaying, duration, currentTime, playPrev, togglePlayPause, playNext }: PlayerProps) => {
-
     const theme = useTheme()
     const { classes } = useStyles(theme)
 
-
     return (
         <>
-            {currentSong ?
+            {currentSong
+                ?
                 <div className={classes.Player}>
                     <span>{currentSong.name}</span>
                     <span className={classes.Artist}>{currentSong.artist}</span>

@@ -1,11 +1,10 @@
 import { makeStyles } from 'tss-react/mui';
-import {type Theme } from '@mui/material/styles';
+import { type Theme } from '@mui/material/styles';
 
-
-const useStyles = makeStyles<Theme>()(({palette}: Theme) => ({
+const useStyles = makeStyles<Theme>()(({ palette }: Theme) => ({
     SongOptions: {
         display: 'flex',
-        gap: '0 5%',
+        gap: '0 5%'
     },
     SongInfo: {
         display: 'flex',

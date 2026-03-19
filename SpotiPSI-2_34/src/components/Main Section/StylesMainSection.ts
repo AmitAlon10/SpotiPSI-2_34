@@ -1,5 +1,5 @@
-import { makeStyles } from 'tss-react/mui';
 import type { Theme } from '@mui/material/styles';
+import { makeStyles } from 'tss-react/mui';
 
 const useStyles = makeStyles<Theme>()(({ palette }: Theme) => ({
     MainSection: {
@@ -16,7 +16,6 @@ const useStyles = makeStyles<Theme>()(({ palette }: Theme) => ({
             width: '0.3vw',
             backgroundColor: 'white',
             borderRadius: '8px'
-
         }
     }
 }));

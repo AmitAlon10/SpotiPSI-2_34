@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import type { Song } from "../types/Types";
 
 const useAudio = () => {
-
     const [currentSong, setCurrentSong] = useState<Song | null>(null)
     const [isPlaying, setIsPlaying] = useState<boolean>(false)
     const [queue, setQueue] = useState<Song[]>([])
@@ -10,24 +9,9 @@ const useAudio = () => {
     const [duration, setDuration] = useState(0)
     const audioRef = useRef<HTMLAudioElement>(new Audio())
 
-    useEffect(() => {
-        if (currentSong) {
-            audioRef.current.pause()
-            audioRef.current.src = `/songs/${currentSong.id}.mp3`
-            audioRef.current.play()
-
-        }
-        else {
-            audioRef.current.pause()
-            audioRef.current.src = ``
-        }
-    }, [currentSong])
-
-    useEffect(() => {
-        isPlaying ? audioRef.current.play() : audioRef.current.pause()
-    }, [isPlaying])
-
-
+    const seek = (time: number) => {
+        audioRef.current.currentTime = time
+    }
 
     const play = (song: Song, queue: Song[]) => {
         setQueue(queue);
@@ -58,6 +42,23 @@ const useAudio = () => {
     }
 
     useEffect(() => {
+        if (currentSong) {
+            audioRef.current.pause()
+            audioRef.current.src = `/songs/${currentSong.id}.mp3`
+            audioRef.current.play()
+
+        }
+        else {
+            audioRef.current.pause()
+            audioRef.current.src = ``
+        }
+    }, [currentSong])
+
+    useEffect(() => {
+        isPlaying ? audioRef.current.play() : audioRef.current.pause()
+    }, [isPlaying])
+
+    useEffect(() => {
         audioRef.current.addEventListener('ended', playNext);
         return () => {
             audioRef.current.removeEventListener('ended', playNext);
@@ -82,11 +83,7 @@ const useAudio = () => {
         };
     }, [])
 
-    const seek = (time: number) => {
-        audioRef.current.currentTime = time
-    }
-
-    return { currentSong, isPlaying, queue, currentTime, duration, play, togglePlayPause, playNext, playPrev, seek };
+    return { currentSong, isPlaying, currentTime, duration, play, togglePlayPause, playNext, playPrev, seek };
 };
 
 export default useAudio

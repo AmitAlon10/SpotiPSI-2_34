@@ -1,8 +1,8 @@
 import { useContext } from "react";
+import { SongPlayingContext } from "../../contexts/SongPlayingContext";
 import type { Song, SongsArr, } from "../../types/Types";
 import SongDisplay from "../SongDisplay/SongDisplay";
 import useStyles from "./StylesSongsTable";
-import { SongPlayingContext } from "../../contexts/SongPlayingContext";
 
 const SongsTable = ({ songs }: SongsArr) => {
     const { classes } = useStyles()

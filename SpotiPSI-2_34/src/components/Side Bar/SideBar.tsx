@@ -1,12 +1,11 @@
-import useStyles from "./StylesSideBar";
-import { LibraryMusic, Home, Favorite } from '@mui/icons-material'
+import { Favorite, Home, LibraryMusic } from '@mui/icons-material';
 import { Link, useLocation } from "react-router-dom";
-
+import useStyles from "./StylesSideBar";
 
 const SideBar = () => {
     const { classes } = useStyles()
-    let arr = [classes.LinkDisplay, classes.LinkDisplay, classes.LinkDisplay]
     const location = useLocation();
+    let arr = [classes.LinkDisplay, classes.LinkDisplay, classes.LinkDisplay]
 
     switch (location.pathname) {
         case '/':
@@ -21,7 +20,6 @@ const SideBar = () => {
     }
 
     return (
-
         <div className={classes.SideBar}>
             <Link to='/' className={arr[0]}><Home />כל השירים</Link>
             <Link to='/playlists' className={arr[1]}><LibraryMusic />פלייליסטים</Link>

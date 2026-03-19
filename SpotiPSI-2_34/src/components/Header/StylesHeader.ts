@@ -8,7 +8,7 @@ const useStyles = makeStyles<Theme>()(({palette}: Theme) => ({
         height: '7.5%',
         display: 'flex',
         justifyContent: 'flex-end',
-        backgroundColor: '#313131',
+        backgroundColor: '#313131'
     },
     Right: {
         display: 'flex',
@@ -17,7 +17,7 @@ const useStyles = makeStyles<Theme>()(({palette}: Theme) => ({
         fontSize: '2em',
         fontWeight: 'bold',
         color: palette.secondary.main,
-        padding:'0 1vh  '
+        padding:'0 1vh'
     }
 }));
 
